@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import json
+from pathlib import Path
+from subprocess import run
+
+
+def execute(cmd):
+    run(cmd, shell=True, check=True)
+
+
+# Confirm release number correct
+version = json.loads(Path('src/app_config.json').read_text())['version']
+releases = [d.name for d in Path('.private/releases').iterdir()]
+if version in releases and '--force' not in sys.argv:
+    raise Exception("Already released version: " + version)
+print("Releasing version: " + version)
+
+# Create release dirs
+release_dir = Path('.private/releases/' + version)
+release_dir.mkdir(exist_ok=True)
+lambdas_dir = release_dir / 'lambdas'
+lambdas_dir.mkdir(exist_ok=True)
+
+# Build app
+if not (release_dir / 'bucket').is_dir():
+    execute('npm run build')
+    execute(f"mv dist {release_dir}/bucket")
+
+# Build lambda
+if not (release_dir / 'lambdas/share.zip').is_file():
+    execute('pipenv run python share/build.py')
+    execute(f"mv share/function.zip {release_dir}/lambdas/share.zip")
+
+# Upload
+os.chdir('.private/domains/next.track.bible')
+execute('PIPENV_MAX_DEPTH=10 pipenv run deploy sync')
+print("You must manually upload lambda if needed")

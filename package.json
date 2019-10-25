@@ -1,0 +1,77 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(ts|vue)' --locales './src/locales/**'",
+    "serve:prod": "light-server --serve dist --port 8080 --no-reload",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@hint/configuration-all": "^1.0.5",
+    "@hint/connector-puppeteer": "^2.1.0",
+    "@kazupon/vue-i18n-loader": "latest",
+    "@types/webpack": "latest",
+    "@vue/cli": "latest",
+    "@vue/cli-plugin-babel": "latest",
+    "@vue/cli-plugin-typescript": "latest",
+    "@vue/cli-service": "latest",
+    "@vue/test-utils": "latest",
+    "axios": "^0.19.0",
+    "chroma-js": "latest",
+    "core-js": "^2.6.8",
+    "cypress": "3.4.0",
+    "date-fns": "^2.2.1",
+    "hint": "latest",
+    "idb": "latest",
+    "ignore-emit-webpack-plugin": "latest",
+    "inobounce": "latest",
+    "js-yaml": "^3.13.1",
+    "jsdom": "^15.1.1",
+    "light-server": "latest",
+    "lighthouse": "latest",
+    "lint-staged": "latest",
+    "md-icon-svgs": "https://github.com/shadow-light/md-icon-svgs/tarball/master",
+    "pug": "latest",
+    "pug-loader": "latest",
+    "pug-plain-loader": "latest",
+    "raw-loader": "latest",
+    "sass": "latest",
+    "sass-loader": "latest",
+    "svgo": "latest",
+    "svgo-loader": "latest",
+    "typescript": "latest",
+    "val-loader": "latest",
+    "vue": "latest",
+    "vue-class-component": "latest",
+    "vue-cli-plugin-i18n": "latest",
+    "vue-cli-plugin-pwa": "latest",
+    "vue-cli-plugin-vuetify": "latest",
+    "vue-i18n": "latest",
+    "vue-property-decorator": "latest",
+    "vue-router": "latest",
+    "vue-template-compiler": "latest",
+    "vuetify": "latest",
+    "vuetify-loader": "latest",
+    "vuex": "latest",
+    "workbox-webpack-plugin": "latest",
+    "yaml-loader": "latest"
+  },
+  "devDependencies": {},
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

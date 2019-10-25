@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
+
+[packages]
+ruamel-yaml = "*"
+semantic-version = "*"
+boto3 = "*"
+mypy = "*"
+invoke = "*"
+beautifulsoup4 = "*"
+requests = "*"
+deploy = {editable = true,path = "./deploy"}
+awscli = "*"
+cairosvg = "*"
+pillow = "*"
+
+[scripts]
+deploy = "python -c \"from deploy.cli import main; main()\""

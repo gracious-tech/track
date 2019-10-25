@@ -1,0 +1,28 @@
+
+# APP VERSIONING
+
+# A simple form of versioning for apps (as opposed to libraries)
+
+# Differences:
+#     1. Only major.minor.patch is used, not any extra labels
+#         Major for changes to user data
+#         Minor for changes to features
+#         Patch for fixes
+#     2. App must always be stable on production domain
+#         Only ever beta on production domain when version < 1
+#     3. App is assumed unstable when on testing domain
+#         Once new versions pass testing on testing domain they can move to production without changes
+#         So production may jump versions if problems found
+
+
+version: '0.7.7'
+domain: track.bible
+name: Track Bible
+short_name: Track
+description: Keep track of your Bible reading, and complete it at your own pace
+theme_codes:
+    # Primary does not need to support both black/white text
+    # Accent and error must support BOTH large black/white (links appear on both)
+    primary: [cyan, p700]
+    accent: [pink, a200]
+    error: [deep_orange, a700]

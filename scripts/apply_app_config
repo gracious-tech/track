@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd `dirname "$0"`
+cd ..
+
+./node_modules/.bin/tsc --moduleResolution Node app_config/apply.ts
+node app_config/apply.js
+rm app_config/*.js

@@ -1,0 +1,191 @@
+
+// Changes to browser defaults
+
+
+html
+    // Disable auto enlarging of text when in landscape (e.g. on iPhone 4)
+    // NOTE this also disables zoom on some devices (disabled via meta anyway)
+    text-size-adjust: none
+    // Prevent width increases that break layout due to long words like URLs
+    word-wrap: break-word
+    overflow-wrap: break-word
+
+
+iframe, img
+    // Prevent these elements from having implicit bottom padding due to being 'inline'
+    display: block
+
+
+strong, th
+    // Bold is too strong, especially for other languages
+    font-weight: 500
+
+
+::-moz-focus-inner
+    // Remove dotted outline around focused buttons etc (Firefox only)
+    border-style: none
+
+
+.v-application  // Required to know if dark or not
+    // Make scrollbars more subtle and themed
+    scrollbar-width: 12px
+    scrollbar-color: #0002 transparent  // WARN ::-webkit-scrollbar-thumb must also be changed
+
+    ::-webkit-scrollbar
+        width: 12px
+        background-color: transparent
+
+    ::-webkit-scrollbar-thumb
+        background-color: #0002
+
+    hr
+        border-width: 0 0 1px 0
+        border-color: #0002
+        margin: 16px 0
+
+    &.theme--dark
+        scrollbar-color: #fff2 transparent
+
+        ::-webkit-scrollbar-thumb
+            background-color: #fff2
+
+        hr
+            border-color: #fff2
+
+
+// Vuetify fixes
+
+
+html
+    // Undo Vuetify forcing scroll on whole page
+    overflow-y: hidden
+
+.v-application--wrap
+    // Undo Vuetify's `min-height: 100vh` which causes issues with browser chrome on mobile
+    min-height: auto
+
+.v-toolbar
+    // Stop toolbar growing vertically
+    flex-grow: 0
+    // Give toolbars a max content width
+    .v-toolbar__content
+        max-width: $header-width
+        margin-left: auto
+        margin-right: auto
+    // Also apply to tabs
+    .v-toolbar__extension
+        justify-content: center
+        .v-tabs
+            max-width: $header-width
+
+.v-dialog
+
+    max-width: $content-width
+
+    .v-card__actions
+        justify-content: flex-end
+        flex-wrap: wrap
+        .v-btn
+            margin-top: 8px
+
+.v-tabs-items
+    // Assuming tabs are used as subnav for whole page, should not have own background
+    background-color: transparent !important
+
+
+.v-application--wrap .v-list
+    // Default to transparent bg for lists (as usually the main item on page)
+    // NOTE .v-application--wrap is just for priority
+    background-color: transparent
+
+
+.v-application
+
+    // Links have accent color so don't need underline
+    a:not(.v-btn)
+        text-decoration: none
+
+    // If on solid color, just show underline/strong and don't change color
+    .primary, .accent, .error
+        a:not(.v-btn)
+            color: inherit !important  // Override needed
+            text-decoration: underline
+            font-weight: 500
+
+    // Lighten links on dark bg (and vice versa)
+    // NOTE Only do this for text (e.g. links) as it is hard to read when not light/dark enough
+    //      i.e. don't need for things like switches and underlines (just leave normal accent)
+    &.theme--dark
+        a:not(.v-btn)  // Links amongst text
+            color: $accent_lighter
+        .accent--text:not([disabled])  // Vuetify text buttons etc
+            color: $accent_lighter !important  // Required to override Vuetify :/
+    &.theme--light
+        a:not(.v-btn)
+            color: $accent_darker
+        .accent--text:not([disabled])
+            color: $accent_darker !important
+
+
+// Custom
+
+
+.app-bg-accent
+    color: $on_accent
+    background-color: $accent
+
+.theme--dark
+    .app-fg-accent-relative
+        color: $accent_lighter
+    .app-fg-error-relative
+        color: $error_lighter
+    .opacity-primary
+        opacity: map-get($material-dark, 'primary-text-percent')
+    .opacity-secondary
+        opacity: map-get($material-dark, 'secondary-text-percent')
+    .opacity-disabled
+        opacity: map-get($material-dark, 'disabledORhints-text-percent')
+.theme--light
+    .app-fg-accent-relative
+        color: $accent_darker
+    .app-fg-error-relative
+        color: $error_darker
+    .opacity-primary
+        opacity: map-get($material-light, 'primary-text-percent')
+    .opacity-secondary
+        opacity: map-get($material-light, 'secondary-text-percent')
+    .opacity-disabled
+        opacity: map-get($material-light, 'disabledORhints-text-percent')
+
+
+
+
+.tick
+    // Size and align tick icon in lists
+    width: 19px
+    height: 19px
+    vertical-align: text-bottom
+
+.release-banner
+    // Appear fixed in top left
+    position: absolute
+    pointer-events: none
+    left: 0
+    top: 0
+    z-index: 10
+    // Size and rotation
+    width: 100px
+    transform: rotateZ(-45deg) translate(-30px, -20px)
+    font-size: 9px
+    padding-top: 2px
+    text-align: center
+    // Style
+    color: $on_accent
+    background-color: $accent
+    font-weight: bold
+    text-transform: uppercase
+    letter-spacing: 1px
+
+    &.test
+        color: $on_error
+        background-color: $error

@@ -1,0 +1,71 @@
+doctype html
+html
+
+    head
+        //- Browser parsing and config
+        meta(charset='utf-8')
+        meta(name='viewport' content='user-scalable=no, width=device-width, initial-scale=1')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        base(href='/')
+
+        //- Meta data
+        title= app_config.name
+        meta(name='description' content=app_config.description)
+
+        //- Pre-install app settings
+        meta(name='theme-color' content=app_config.theme.primary_darker)
+        link(rel='icon' sizes='192x192' href='/_assets/optional/icons/icon_192_circle.png')
+        link(rel='icon' sizes='512x512' href='/_assets/optional/icons/icon_512_circle.png')
+
+        //- Web app settings
+        //- WARN Firefox doesn't seem to support virtual object URLs for manifest
+        //- WARN "Chrome will only update if the Web Manifest URL does not change"
+        //- See https://developers.google.com/web/fundamentals/integration/webapks
+        link(rel='manifest' href='/_assets/manifest.json')
+
+        //- Web app settings (Safari)
+        //- NOTE Assumes app theme is dark
+        meta(name='apple-mobile-web-app-capable' content='yes')
+        meta(name='apple-mobile-web-app-status-bar-style' content='black')
+        //- NOTE iOS will round icon corners itself (circle leaves black spaces at corners)
+        link(rel='apple-touch-icon' href='/_assets/optional/icons/icon_192_square.png')
+
+        //- Social media meta
+        //- NOTE og:image has to be absolute & static, so have to hardcode as production domain
+        meta(property='og:image'
+            content=`https://${app_config.domain}/_assets/optional/social_preview.png`)
+        meta(property='og:image:width' content='1200')
+        meta(property='og:image:height' content='628')
+
+        //- Display of unsupported message (if error and not supported)
+        //- This code is intentionally inline as must be simple and support ES4/5 etc
+        //- WARN Should ONLY display if an error, in case feature detection is incorrect
+        //-     This may be the case for search engines etc that don't include a Grid API
+        script.
+            // Test for grid property that isn't part of old grid spec
+            self._browser_supported = (self.CSS && self.CSS.supports
+                && self.CSS.supports('grid-template-rows', 'none'))
+            self.addEventListener('error', function(){
+                if (self._browser_supported){
+                    return  // Let error handler in app handle this
+                }
+                self.document.body.innerHTML += '<div class="fail-splash"><h1>Sorry, your browser is too old.</h1><h2>Update it to use this app, and for your own security!</h2></div>'
+            })
+
+        //- Manually inject scripts during production so can inline for index and use `defer`
+        //- Webpack is configured to only auto-add scripts during development
+        //-     as hot reloading chokes on inline scripts
+        if node_env !== 'development'
+            //- NOTE Could also do for 'assets.css' if no longer embedded in JS for some reason
+            each js_file in assets.js
+                if js_file.includes('/index.')
+                    script !{compilation.assets[js_file.slice(1)].source()}
+                else
+                    script(src=js_file defer onerror='_fail("App download interrupted")')
+
+    body
+        div#app
+            //- Simplified low-CPU-cost Material progress circle (proportions same)
+            svg.loading(viewBox='0 0 100 100' preserveAspectRatio='xMidYMid meet')
+                //- Place in middle with radius 40 (stroke length of 250 surrounds whole circle)
+                circle(cx='50' cy='50' r='40' stroke-width='10' stroke-dasharray='190')
