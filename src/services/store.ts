@@ -127,7 +127,7 @@ function get_blank_profile(){
         completed_puzzle_dismissed: false,
         last_completed: null,
         last_progressed: [],
-        current_run_start: new Date(),
+        current_run_start: new Date(),  // Shouldn't ever be used (init'd when profile created)
         completions_bible: 0,
         completions_books: data.books.reduce((obj, book) => {
             obj[book] = 0
@@ -177,6 +177,9 @@ function add_profile_storeless(db, state, name=null){
     if (name){
         set_dict_storeless(db, state, [['profiles', profile_id, 'name'], name])
     }
+
+    // Set start date since dynamic and must be saved in db (not defaulted)
+    set_dict_storeless(db, state, [['profiles', profile_id, 'current_run_start'], new Date()])
 
     // Switch to the new profile
     set_dict_storeless(db, state, ['profile', profile_id])

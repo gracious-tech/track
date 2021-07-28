@@ -90,6 +90,9 @@ export default class extends Vue {
         const start = this.$store.getters.profile.current_run_start
         // Work out numbers
         let months = differenceInCalendarMonths(new Date(), start)
+        if (months < 1){
+            return "Recently"
+        }
         const years = Math.floor(months / 12)
         months = months % 12
         // Format into string
