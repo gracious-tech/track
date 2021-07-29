@@ -35,6 +35,6 @@ if not (release_dir / 'lambdas/share.zip').is_file():
     execute(f"mv share/function.zip {release_dir}/lambdas/share.zip")
 
 # Upload
-os.chdir('.private/domains/next.track.bible')
+os.chdir('.private/domains/track.bible')
 execute('PIPENV_MAX_DEPTH=10 pipenv run deploy sync')
 print("You must manually upload lambda if needed")
