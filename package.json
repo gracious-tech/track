@@ -11,8 +11,6 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@hint/configuration-all": "^1.0.5",
-    "@hint/connector-puppeteer": "^2.1.0",
     "@kazupon/vue-i18n-loader": "latest",
     "@types/webpack": "latest",
     "@vue/cli": "latest",
@@ -25,7 +23,6 @@
     "core-js": "^2.6.8",
     "cypress": "3.4.0",
     "date-fns": "^2.2.1",
-    "hint": "latest",
     "idb": "latest",
     "ignore-emit-webpack-plugin": "latest",
     "inobounce": "latest",
