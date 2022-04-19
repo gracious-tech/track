@@ -206,7 +206,6 @@ export default class extends Vue {
 .iframe
     flex-grow: 1
     overflow-y: auto
-    overflow-x: hidden  // iframe larger than page width to reduce Bible Gateway padding
     height: 100%  // Required by Samsung Browser (tested on 9.4)
 
 .notice
@@ -230,14 +229,6 @@ export default class extends Vue {
     // NOTE iframe is deep because it is manually inserted (Vue doesn't know about it)
     iframe
         width: 100%
-
-        // Bible Gateway always has 60px left/right padding, so reduce for narrow screens
-        // NOTE Hides scrollbar, which is fine for mobile devices anyway
-        // NOTE No right padding preserved as text wrapping naturally creates > 12px on average
-        @media (max-width: 800px)
-            width: calc(100vw + 60px*2 - 12px)  // Preserve 12px left padding
-            margin-left: -60px + 12px  // Hide left padding, preserving only 12px
-
         height: 100%
         border-style: none
         // Background required to have uniform white (and for filter to work for dark)
