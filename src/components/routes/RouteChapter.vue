@@ -3,11 +3,11 @@
 
 div
     app-content.notice(v-if='show_chapter_intro' class='pa-5')
-        p(class='headline') Read here, another app, or your own Bible
+        p(class='headline') Read in another app or your own Bible
         h2(class='headline app-fg-accent-relative my-5') Whatever you prefer!
-        p(class='text--secondary body-2 my-12') Bible Gateway pages will be displayed. Bible Gateway and Track.bible are not affliated in any way.
         v-btn(@click='show_chapter_intro = false' v-t='"btn_dismiss"' color='accent')
-    .iframe(v-else v-html='iframe' :class='{dark: dark}')
+    div.content(v-else)
+        p Bible reading within this app coming soon...
 
     v-toolbar
         v-btn(:to='to_prev_chapter' :disabled='is_first_chapter' icon)
@@ -69,15 +69,6 @@ export default class extends Vue {
     shortcuts_chapter = this.chapter
 
     // DISPLAY
-
-    get iframe(){
-        // Return iframe as html so forced to recreate when chapter changes (no old text shown)
-        const url = new URL('https://www.biblegateway.com/passage/')
-        url.searchParams.set('interface', 'print')
-        url.searchParams.set('version', this.$store.state.bible_version)
-        url.searchParams.set('search', this.book_name + ' ' + this.chapter)
-        return `<iframe sandbox src='${url}'></iframe>`
-    }
 
     get book_name() {
         return this.$store.state.tmp.book_names[this.book]
@@ -203,10 +194,12 @@ export default class extends Vue {
 <style lang='sass' scoped>
 
 
-.iframe
+.content
     flex-grow: 1
     overflow-y: auto
     height: 100%  // Required by Samsung Browser (tested on 9.4)
+    text-align: center
+    padding: 20px
 
 .notice
     text-align: center
@@ -226,21 +219,8 @@ export default class extends Vue {
 
 ::v-deep
 
-    // NOTE iframe is deep because it is manually inserted (Vue doesn't know about it)
-    iframe
-        width: 100%
-        height: 100%
-        border-style: none
-        // Background required to have uniform white (and for filter to work for dark)
-        background-color: #fff
-        filter: opacity(0.8)
-
     .v-toolbar__content
         justify-content: space-around
-
-
-    .dark iframe
-        filter: invert(100%) hue-rotate(180deg) opacity(0.8)
 
 
 </style>
