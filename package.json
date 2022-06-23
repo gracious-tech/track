@@ -30,7 +30,7 @@
     "ignore-emit-webpack-plugin": "latest",
     "inobounce": "latest",
     "js-yaml": "^3.13.1",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "light-server": "latest",
     "lighthouse": "latest",
     "lint-staged": "latest",
