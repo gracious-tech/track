@@ -15,7 +15,7 @@
 #         So production may jump versions if problems found
 
 
-version: '0.7.9'
+version: '0.7.11'
 domain: track.bible
 name: Track Bible
 short_name: Track
