@@ -11,9 +11,6 @@ div
 
         h2(class='title my-5') Language
         component(is='VAutoOrSelect' v-model='locale' :items.once='locales' label="Language")
-        component(is='VAutoOrSelect' v-model='bible_version' :items='bible_versions'
-            label="Bible translation" persistent-hint
-            hint="For reading chapters, and also for displaying chapter and book names")
 
         h2(class='title mb-5 mt-7') Toggle features
         v-switch(v-model='percentages' label="Show percentages"
@@ -105,26 +102,8 @@ export default class extends Vue {
     }
 
     set locale(value){
-        // Change locale (and must also therefore change translation)
+        // Change locale
         this.$store.commit('set_dict', ['locale', value])
-        // Change to first translation in list for now (unless English)
-        // TODO Have recommended default translations for all languages
-        this.bible_version = value === 'en' ? 'NIV' : data.versions_by_lang[value][0]
-    }
-
-    get bible_versions(){
-        // Only allow changing to translations of the selected locale
-        // Multi-lingual study goes beyond scope of app, and UI is very limited already anyway
-        const locale_versions = data.versions_by_lang[this.$store.state.locale]
-        return locale_versions.map(code => ({value: code, text: data.version_names[code]}))
-    }
-
-    get bible_version(){
-        return this.$store.state.bible_version
-    }
-
-    set bible_version(value){
-        this.$store.dispatch('change_bible_version', value)
     }
 
     // PROFILES
