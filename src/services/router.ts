@@ -21,7 +21,7 @@ const routes = [
     {path: '/bible/', redirect: '/'},
     {path: '/bible/:book/', component: RouteBook},
     {path: '/bible/:book/video/', component: RouteVideo},
-    {path: '/bible/:book/:chapter/', component: RouteChapter, props: route => {
+    {path: '/bible/:book/:chapter/', component: RouteChapter, name: 'chapter', props: route => {
         return {
             book: route.params.book,
             chapter: Number(route.params.chapter),
