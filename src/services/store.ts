@@ -27,7 +27,7 @@ interface AppState {
     show_splash_welcome_init:boolean
     show_splash_install_averse:boolean
     show_install_banner:boolean
-    show_chapter_intro:boolean
+    show_chapter_intro:boolean  // TODO rm from db
     last_url:string
     offline_opens:number
 

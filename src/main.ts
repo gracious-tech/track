@@ -28,6 +28,10 @@ import 'inobounce'
 import '@/services/generic_styles.sass'
 
 
+// Interact with fetch(bible)
+import '@/services/fetch'
+
+
 // Make beforeinstallprompt event available to custom handler
 self.addEventListener('beforeinstallprompt', event => {
     // Prevent showing prompt right now
