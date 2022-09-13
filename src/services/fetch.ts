@@ -121,10 +121,13 @@ self.addEventListener('message', event => {
                 || self._app.$route.params.chapter !== parseInt(data.chapter, 10)){
 
             // Change route so back nav works
-            self._app.$router.push({
-                name: 'chapter',
-                params: {book: old_book, chapter: data.chapter},
-            })
+            // WARN Don't change if no longer viewing chapter comp, as will interfer with back btn
+            if (self._app.$route.name === 'chapter'){
+                self._app.$router.push({
+                    name: 'chapter',
+                    params: {book: old_book, chapter: data.chapter},
+                })
+            }
 
         }
     }
