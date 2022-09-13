@@ -142,6 +142,6 @@ self.addEventListener('message', event => {
             button1_color: self._app.$store.getters.done_chapters_for(old_book, data.chapter)
                 ? app_config.theme.accent : '',
         }
-        ;(event.source as Window).postMessage(reply, {targetOrigin: FETCH_ORIGIN})
+        ;(event.source as Window).postMessage(reply, FETCH_ORIGIN)
     }
 })
