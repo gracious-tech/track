@@ -27,7 +27,7 @@ export default class extends Vue {
             ['dark', `${this.$store.state.dark}`],
             ['color', app_config.theme.primary],
             ['back', 'true'],
-            ['chapter', `${this.chapter}`],
+            ['verse', `${this.chapter}:1`],
             ['book', books_old_to_new[this.book]],
         ])
         this.src = `${FETCH_ORIGIN}/#${params}`
