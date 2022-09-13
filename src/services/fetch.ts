@@ -106,38 +106,14 @@ self.addEventListener('message', event => {
     const data = event.data as FetchBibleEvent
     const old_book = books_new_to_old[data.book]
 
-    // Helper fns
-    const status = () => self._app.$store.getters.progress_book_str_for(old_book)
-    const button1_icon = () => self._app.$store.getters.done_books_for(old_book)
-        ? icon_done_all : icon_done
-    const button1_color = () => self._app.$store.getters.done_chapters_for(old_book, data.chapter)
-        ? app_config.theme.accent : ''
-
     // Event types
-    if (data.type === 'ready'){
-        // Provide initial config not already provided via url params
-        const reply = {
-            type: 'update',
-            status: status(),
-            button1_icon: button1_icon(),
-            button1_color: button1_color(),
-        }
-        event.source.postMessage(reply, {targetOrigin: FETCH_ORIGIN})
-
-    } else if (data.type === 'back'){
+    if (data.type === 'back'){
         // Leave route if back clicked
         self._app.$router.push('../')
 
     } else if (data.type === 'button1'){
         // Respond to tick button
         self._app.$store.dispatch('toggle_ch_read', [old_book, data.chapter])
-        const reply = {
-            type: 'update',
-            status: status(),
-            button1_icon: button1_icon(),
-            button1_color: button1_color(),
-        }
-        event.source.postMessage(reply, {targetOrigin: FETCH_ORIGIN})
 
     } else if (data.type === 'verse_change'){
         // Respond to chapter change (ignore other changes)
@@ -150,14 +126,19 @@ self.addEventListener('message', event => {
                 params: {book: old_book, chapter: data.chapter},
             })
 
-            // Update status and button appearance
-            const reply = {
-                type: 'update',
-                status: status(),
-                button1_icon: button1_icon(),
-                button1_color: button1_color(),
-            }
-            event.source.postMessage(reply, {targetOrigin: FETCH_ORIGIN})
         }
+    }
+
+    // If source still exists (it may not) reply with desired state
+    if (event.source && data.type !== 'back'){
+        const reply = {
+            type: 'update',
+            status: self._app.$store.getters.progress_book_str_for(old_book),
+            button1_icon: self._app.$store.getters.done_books_for(old_book)
+                ? icon_done_all : icon_done,
+            button1_color: self._app.$store.getters.done_chapters_for(old_book, data.chapter)
+                ? app_config.theme.accent : '',
+        }
+        ;(event.source as Window).postMessage(reply, {targetOrigin: FETCH_ORIGIN})
     }
 })
