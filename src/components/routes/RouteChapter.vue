@@ -1,7 +1,7 @@
 
 <template lang='pug'>
 
-iframe(ref='iframe' :src='src' sandbox='allow-scripts allow-same-origin')
+iframe(ref='iframe' :src='src')
 
 </template>
 
