@@ -85,12 +85,13 @@ const icon_done_all = 'M24 45.25q-4.5 0-8.4-1.625Q11.7 42 8.85 39.15 6 36.3 4.37
 
 
 interface FetchBibleEvent {
-    type:'ready'|'verse_change'|'back'|'button1'
-    language:string
-    translation:string
+    type:'ready'|'translation'|'verse'|'back'|'button1'|'dark'
+    languages:[string, ...string[]]
+    translations:[string, ...string[]]
     book:string
-    chapter:string
-    verse:string
+    chapter:number
+    verse:number
+    dark:boolean
 }
 
 
@@ -115,10 +116,16 @@ self.addEventListener('message', event => {
         // Respond to tick button
         self._app.$store.dispatch('toggle_ch_read', [old_book, data.chapter])
 
-    } else if (data.type === 'verse_change'){
+    } else if (data.type === 'dark'){
+        // Update dark setting
+        self._app.$store.commit('set_dict', ['dark', data.dark])
+        // Tell Vuetify about the new value
+        self._app.$vuetify.theme.dark = data.dark
+
+    } else if (data.type === 'verse'){
         // Respond to chapter change (ignore other changes)
         if (self._app.$route.params.book !== old_book
-                || self._app.$route.params.chapter !== parseInt(data.chapter, 10)){
+                || parseInt(self._app.$route.params.chapter, 10) !== data.chapter){
 
             // Change route so back nav works
             // WARN Don't change if no longer viewing chapter comp, as will interfer with back btn
