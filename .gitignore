@@ -4,12 +4,6 @@
 /.venv/
 /dist/
 
-# Test output
-/cypress/screenshots/
-
 # Local env files
 /.env.local
 /.env.*.local
-
-# TODO rm
-/cypress
