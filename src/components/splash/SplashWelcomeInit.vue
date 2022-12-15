@@ -4,7 +4,7 @@
 app-content.page(class='pa-3 text-center')
 
     h2(class='my-5') Initial Progress
-    p Tick off books you've already completed (or none if you'd like to start fresh)
+    p Tick off books you've already read (or skip if you'd like to start fresh)
 
     p(class='my-7')
         v-btn(@click='done' outlined) Done
