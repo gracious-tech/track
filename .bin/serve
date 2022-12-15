@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd `dirname "$0"`
+cd ..
+
+./node_modules/.bin/vue-cli-service serve

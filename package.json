@@ -1,15 +1,6 @@
 {
   "name": "app",
   "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(ts|vue)' --locales './src/locales/**'",
-    "serve:prod": "light-server --serve dist --port 8080 --no-reload",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
-  },
   "dependencies": {
     "@kazupon/vue-i18n-loader": "latest",
     "@types/webpack": "latest",

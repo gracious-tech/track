@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd `dirname "$0"`
+cd ..
+
+./node_modules/.bin/light-server --serve dist --port 8080 --no-reload
