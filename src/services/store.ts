@@ -188,7 +188,8 @@ function add_profile_storeless(db, state, name=null){
 
 async function get_version_data(bible_version){
     // Get version data for the given version (return null if can't)
-    const url = `/_assets/optional/versions/${bible_version}.json`
+    // TODO Currently hardcoded to NET data
+    const url = `/_assets/optional/versions/NET.json`
     const resp = await fetch_ensure_cached('bible_versions', url)
     return resp ? resp.json() : null
 }
