@@ -14,8 +14,6 @@ svg(@click='click' :viewBox='viewbox' :class='{dark: this.$store.state.dark}')
 <script lang='ts'>
 import {Component, Vue, Prop} from 'vue-property-decorator'
 
-import data from '@/data/data.json'
-
 
 @Component({})
 export default class extends Vue {
