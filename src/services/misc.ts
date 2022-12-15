@@ -10,8 +10,7 @@ import app_config from '@/app_config.json'
 
 
 export const version = app_config.version
-export const prerelease =
-    self.location.hostname.startsWith('next.') ? 'test' : (version.startsWith('0.') ? 'beta' : null)
+export const prerelease = self.location.hostname.startsWith('next.') ? 'test' : null
 
 
 // COMPONENTS

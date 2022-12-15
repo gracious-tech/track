@@ -3,8 +3,6 @@
 
 div
 
-    div(v-if='beta_release' class='release-banner') BETA
-
     v-toolbar(color='primary' dark)
 
 
@@ -77,20 +75,16 @@ div
 
 import {Component, Vue} from 'vue-property-decorator'
 
-import data from '@/data/data.json'
 import AppBrand from '@/components/reuseable/AppBrand.vue'
 import AppInstallBanner from '@/components/reuseable/AppInstallBanner.vue'
 import RouteRootProgress from '@/components/routes/RouteRoot/RouteRootProgress.vue'
 import RouteRootTestament from '@/components/routes/RouteRoot/RouteRootTestament.vue'
-import {prerelease} from '@/services/misc'
 
 
 @Component({
     components: {RouteRootProgress, RouteRootTestament, AppBrand, AppInstallBanner},
 })
 export default class extends Vue {
-
-    beta_release = prerelease === 'beta'
 
     get selected_tab(){
         return this.$store.state.tmp.root_selected_tab

@@ -35,11 +35,6 @@ app-content.page(class='pa-3 text-center')
             app-svg(name='icon_warning' class='mr-3')
         | This version is for testing new features only and you may lose your data.
         | Use the <a href='https://track.bible'>main app</a> for your real data.
-    v-alert(v-else-if='prerelease === "beta"' color='accent' class='body-2 text-left')
-        template(#prepend)
-            app-svg(name='icon_info' class='mr-3')
-        | This is a beta version. It's ready to use but may still have some issues.
-        | If you identify any, please let us know.
 
     p(class='mt-3')
         v-btn(@click='done' outlined) Let's Go!
