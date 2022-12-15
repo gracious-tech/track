@@ -15,7 +15,7 @@ div
             li Secure
             li Free
         p As such, this app is completely non-profit with no ads, no tracking, and nothing else that would benefit us. This app is for your benefit alone. Your data is stored in your device and never leaves it. You can see this for yourself as <a href='https://github.com/gracious-tech/track' target='_blank'>the code is open source</a>.
-        p(class='body-2 text--secondary') Our servers do store data your device sends to us by default (such as your IP address and browser version). Error reports are also sent to us in the rare event the app fails, but they do not contain any of your data. All received data is used for quality improvement, never for commercial reasons, and never shared with third-parties.
+        p(class='body-2 text--secondary') Our servers do store data your device sends to us by default (such as your IP address and browser version). Error reports are also sent to us in the rare event the app fails, but they do not contain any of your data. All received data is used for quality improvement, never for commercial reasons.
         p We hope this app helps you read all of God's word and to have faith in him.
         p
             v-btn(href='https://github.com/gracious-tech/track' target='_blank' color='accent' text)
