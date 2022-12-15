@@ -101,10 +101,10 @@ export default class extends Vue {
     //     return this.$store.state.locale
     // }
 
-    set locale(value){
-        // Change locale
-        this.$store.commit('set_dict', ['locale', value])
-    }
+    // set locale(value){
+    //     // Change locale
+    //     this.$store.commit('set_dict', ['locale', value])
+    // }
 
     // PROFILES
 
