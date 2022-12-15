@@ -9,8 +9,8 @@ div
 
     app-content(class='pa-3')
 
-        h2(class='title my-5') Language
-        component(is='VAutoOrSelect' v-model='locale' :items.once='locales' label="Language")
+        //- h2(class='title my-5') Language
+        //- component(is='VAutoOrSelect' v-model='locale' :items.once='locales' label="Language")
 
         h2(class='title mb-5 mt-7') Toggle features
         v-switch(v-model='percentages' label="Show percentages"
@@ -93,13 +93,13 @@ export default class extends Vue {
         this.$store.commit('set_dict', ['celebrations', value])
     }
 
-    get locales(){
-        return data.langs.map(code => ({value: code, text: data.lang_names[code]}))
-    }
+    // get locales(){
+    //     return data.langs.map(code => ({value: code, text: data.lang_names[code]}))
+    // }
 
-    get locale(){
-        return this.$store.state.locale
-    }
+    // get locale(){
+    //     return this.$store.state.locale
+    // }
 
     set locale(value){
         // Change locale
