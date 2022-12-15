@@ -23,8 +23,6 @@ en:
 
 import {Component, Vue} from 'vue-property-decorator'
 
-import data from '@/data/data.json'
-
 
 @Component({})
 export default class extends Vue {
