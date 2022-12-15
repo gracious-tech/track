@@ -37,6 +37,7 @@ export default class extends Vue {}
         margin-right: 4px
 
     .words
+        user-select: none
         padding-top: 5px
 
     .brand-track
