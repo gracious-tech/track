@@ -37,7 +37,7 @@ app-content.page(class='pa-3 text-center')
         | Use the <a href='https://track.bible'>main app</a> for your real data.
 
     p(class='mt-3')
-        v-btn(@click='done' outlined) Let's Go!
+        v-btn(@click='done' outlined) Continue
 
 </template>
 
