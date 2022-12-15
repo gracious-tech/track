@@ -28,7 +28,7 @@ app-content.page(class='pa-3 text-center')
             v-list-item-avatar
                 app-svg(name='icon_attach_money')
             v-list-item-content
-                v-list-item-title Completely free and secure
+                v-list-item-title Completely free and private
 
     v-alert(v-if='prerelease === "test"' color='error' class='body-2 text-left')
         template(#prepend)
