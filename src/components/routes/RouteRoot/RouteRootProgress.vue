@@ -16,8 +16,8 @@ div
 
     h2(class='my-5 subtitle-2 text--secondary') Progress puzzle
     app-puzzle(:click='open_share_dialog')
-    p(class='text-center mt-3')
-        v-btn(@click='open_share_dialog' text color='accent') SHARE PROGRESS
+    //- p(class='text-center mt-3')
+    //-     v-btn(@click='open_share_dialog' text color='accent') SHARE PROGRESS
 
     h2(class='my-5 subtitle-2 text--secondary') Stats
     v-simple-table(class='mb-6')
@@ -47,7 +47,6 @@ div
 import {Component, Vue} from 'vue-property-decorator'
 import {differenceInCalendarMonths} from 'date-fns'
 
-import {sorted_json} from '@/services/utils'
 import AppShare from '@/components/reuseable/AppShare.vue'
 import AppPuzzle from '@/components/reuseable/AppPuzzle.vue'
 
@@ -108,7 +107,7 @@ export default class extends Vue {
     }
 
     open_share_dialog(){
-        (this.$refs.app_share as any).open_dialog()
+        // (this.$refs.app_share as any).open_dialog()
     }
 
 }

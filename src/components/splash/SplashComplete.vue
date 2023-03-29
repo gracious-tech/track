@@ -8,10 +8,10 @@ app-content.page(class='text-center')
         app-svg(name='icon_done' class='ml-3 icon')
 
     img(@click='open_share_dialog' :src='`/_assets/optional/puzzles/${puzzle}.jpg`' class='mt-8')
-    p(class='text-center mt-3')
-        v-btn(@click='open_share_dialog' text dark)
-            app-svg(name='icon_share' class='mr-3')
-            | SHARE
+    //- p(class='text-center mt-3')
+    //-     v-btn(@click='open_share_dialog' text dark)
+    //-         app-svg(name='icon_share' class='mr-3')
+    //-         | SHARE
     v-btn(@click='done' outlined class='mt-5' dark) Start fresh!
 
     app-share(ref='app_share')
@@ -35,7 +35,7 @@ export default class extends Vue {
     }
 
     open_share_dialog(){
-        (this.$refs.app_share as any).open_dialog()
+        // (this.$refs.app_share as any).open_dialog()
     }
 
     done(){
