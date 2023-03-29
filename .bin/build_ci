@@ -1,0 +1,11 @@
+#!/bin/bash
+# Build for CI
+
+cd `dirname "$0"`
+cd ..
+
+
+# Install from lockfile (expects NPM_FLAGS to be "--version" to block CI's own install attempt)
+NPM_FLAGS="" npm ci
+
+./node_modules/.bin/vue-cli-service build
