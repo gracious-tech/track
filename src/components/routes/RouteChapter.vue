@@ -26,7 +26,8 @@ export default class extends Vue {
         const book_code = books_old_to_new[this.book]
         const params = new URLSearchParams([
             ['dark', `${this.$store.state.dark}`],
-            ['color', app_config.theme.primary],
+            ['hue', '186'],
+            ['saturation', '80'],
             ['back', 'true'],
             ['search', `${book_code}${this.chapter}`],
         ])
