@@ -23,12 +23,12 @@ export default class extends Vue {
     src:string
 
     created(){
+        const book_code = books_old_to_new[this.book]
         const params = new URLSearchParams([
             ['dark', `${this.$store.state.dark}`],
             ['color', app_config.theme.primary],
             ['back', 'true'],
-            ['verse', `${this.chapter}:1`],
-            ['book', books_old_to_new[this.book]],
+            ['search', `${book_code}${this.chapter}`],
         ])
         this.src = `${FETCH_ORIGIN}/#${params}`
     }
